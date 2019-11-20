@@ -1,9 +1,10 @@
 import React from 'react';
+import Taskbar from './components/Taskbar';
 
 function App() {
   return (
     <div className="App">
-
+      <Taskbar />
     </div>
   );
 }

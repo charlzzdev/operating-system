@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
 }
 
 .App{
@@ -10,4 +13,13 @@
   overflow: hidden;
   background: url("https://wallpaperaccess.com/full/84248.png");
   background-size: cover;
+}
+
+.Taskbar{
+  width: 100%;
+  height: 3rem;
+  background: #222;
+  position: absolute;
+  bottom: 0;
+  color: #efefef;
 }
