@@ -7,6 +7,11 @@
   font-family: 'Roboto', sans-serif;
 }
 
+:focus{
+  outline: 2px solid #fff;
+  outline-offset: -2px;
+}
+
 .App{
   width: 100vw;
   height: 100vh;
@@ -22,4 +27,28 @@
   position: absolute;
   bottom: 0;
   color: #efefef;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Taskbar .TaskbarIconContainer{
+  display: flex;
+}
+
+.TaskbarIcon{
+  height: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background: #222;
+  border: 0;
+  color: #fff;
+  font-size: inherit;
+  transition: background 200ms;
+}
+
+.TaskbarIcon:hover{
+  background: #333;
 }
