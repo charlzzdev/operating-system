@@ -20,6 +20,14 @@
   background-size: cover;
 }
 
+/* 
+ *
+ *
+ *    TASKBAR
+ *
+ *
+ */
+
 .Taskbar{
   width: 100%;
   height: 3rem;
@@ -51,4 +59,32 @@
 
 .TaskbarIcon:hover{
   background: #333;
+}
+
+/* 
+ *
+ *
+ *    DESKTOP
+ *
+ *
+ */
+
+ .DesktopIcon{
+  background: transparent;
+  border: 0;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  color: #fff;
+  font-size: inherit;
+  cursor: pointer;
+  -webkit-user-drag: element;
+  transition: background 200ms;
+}
+
+.DesktopIcon:hover{
+  background: rgba(255,255,255,0.2);
+}
+
+.DesktopIcon .title{
+  text-shadow: 0 2px 5px #222;
 }
