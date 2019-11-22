@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import TaskbarIcon from './TaskbarIcon';
-import { Monitor, Search } from '../icons';
+import { Monitor, Search, TextFile } from '../icons';
 
-const Taskbar = () => {
+const Taskbar = ({ desktopWindows }) => {
   const [time, setTime] = useState(new Date().toLocaleString());
 
   useEffect(() => {
@@ -18,6 +18,20 @@ const Taskbar = () => {
         <TaskbarIcon width="3rem" onClick={() => null}>
           <Search />
         </TaskbarIcon>
+        {
+          desktopWindows.map(({ key }) => (
+            <TaskbarIcon
+              width="3rem"
+              onClick={() => {
+                const keyClassList = document.getElementById(key).classList;
+                keyClassList.contains('closed') ? keyClassList.remove('closed') : keyClassList.add('closed');
+              }}
+              key={key}
+            >
+              <TextFile />
+            </TaskbarIcon>
+          ))
+        }
       </div>
       <TaskbarIcon width="7rem">
         {time}

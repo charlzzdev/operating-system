@@ -16,12 +16,15 @@ function App() {
       <DesktopIcon
         icon={<Notepad />}
         title="Notepad"
-        onDoubleClick={() => setDesktopWindows([
-          ...desktopWindows,
-          <NotepadWindow key={uuidv4()} />
-        ])}
+        onDoubleClick={() => {
+          let id = uuidv4();
+          setDesktopWindows([
+            ...desktopWindows,
+            <NotepadWindow key={id} id={id} />
+          ])
+        }}
       />
-      <Taskbar />
+      <Taskbar desktopWindows={desktopWindows} />
     </div>
   );
 }
