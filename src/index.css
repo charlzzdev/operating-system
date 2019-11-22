@@ -7,6 +7,10 @@
   font-family: 'Roboto', sans-serif;
 }
 
+body{
+  overflow: hidden;
+}
+
 :focus{
   outline: 2px solid #fff;
   outline-offset: -2px;
@@ -87,4 +91,36 @@
 
 .DesktopIcon .title{
   text-shadow: 0 2px 5px #222;
+}
+
+.NotepadWindow{
+  width: 500px;
+  height: 400px;
+  background: #fff;
+  position: absolute;
+  z-index: 900;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-user-drag: element;
+}
+
+.NotepadWindow textarea{
+  font-size: inherit;
+  padding: 0.5rem;
+  width: 100%;
+  height: 100%;
+  resize: none;
+}
+
+.WindowHeader{
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+  background: #222;
+  color: #fff;
+}
+
+.WindowHeader span{
+  pointer-events: none;
 }
