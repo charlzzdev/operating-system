@@ -3,7 +3,12 @@ import dropIcon from '../functions/dropIcon';
 
 const DesktopIcon = ({ icon, title, onDoubleClick }) => {
   return (
-    <button className="DesktopIcon" onDoubleClick={onDoubleClick} onDragEnd={dropIcon}>
+    <button
+      className="DesktopIcon"
+      onDoubleClick={onDoubleClick}
+      onKeyDown={e => e.key === 'Enter' && onDoubleClick()}
+      onDragEnd={dropIcon}
+    >
       <div className="icon">
         {icon}
       </div>
