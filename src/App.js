@@ -1,14 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import uuidv4 from 'uuid/v4';
 import Taskbar from './components/Taskbar';
 import DesktopIcon from './components/DesktopIcon';
 import { Notepad } from './icons';
 import NotepadWindow from './components/NotepadWindow';
 import ContextMenu from './components/ContextMenu';
+import windowStore from './stores/windowStore';
 
 function App() {
   const [desktopWindows, setDesktopWindows] = useState([]);
   const [contextMenu, setContextMenu] = useState({ open: false, clientX: 0, clientY: 0 });
+
+  useEffect(() => {
+    windowStore.subscribe(() => {
+      setDesktopWindows(windowStore.getState());
+    });
+  }, []);
 
   return (
     <div
@@ -28,10 +35,7 @@ function App() {
         title="Notepad"
         onDoubleClick={() => {
           let id = uuidv4();
-          setDesktopWindows([
-            ...desktopWindows,
-            <NotepadWindow key={id} id={id} />
-          ])
+          windowStore.dispatch({ type: 'open', window: <NotepadWindow key={id} id={id} /> });
         }}
       />
       <Taskbar desktopWindows={desktopWindows} />
