@@ -128,8 +128,12 @@ body{
   color: #fff;
 }
 
-.WindowHeader span{
+.WindowHeader, .title, .icon{
   pointer-events: none;
+}
+
+button{
+  pointer-events: initial;
 }
 
 /* 
