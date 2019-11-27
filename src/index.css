@@ -147,6 +147,14 @@ body{
   color: #fff;
 }
 
+.WindowHeaderIcons{
+  display: inherit;
+}
+
+.WindowHeaderIcons button{
+  margin-left: 10px;
+}
+
 .WindowHeader, .title, .icon{
   pointer-events: none;
 }

@@ -27,6 +27,7 @@ const Taskbar = ({ desktopWindows }) => {
                 keyClassList.contains('closed') ? keyClassList.remove('closed') : keyClassList.add('closed');
               }}
               key={key}
+              id={key}
             >
               <TextFile />
             </TaskbarIcon>

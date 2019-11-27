@@ -1,9 +1,9 @@
 import React from 'react';
 
-const TaskbarIcon = ({ width, onClick, children }) => {
+const TaskbarIcon = ({ id, width, onClick, children }) => {
   return (
     <button
-      className="TaskbarIcon"
+      className={`TaskbarIcon icon-${id}`}
       style={{ width }}
       onClick={onClick}
     >
