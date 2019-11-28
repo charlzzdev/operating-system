@@ -193,3 +193,46 @@ button{
 .ContextMenu li svg{
   float:right;
 }
+
+/* 
+ *
+ *
+ *    SAVE DIALOG
+ *
+ *
+ */
+
+.SaveDialog{
+  display: flex;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 2rem auto;
+  background: #f9f9f9;
+  width: 75%;
+  padding: 2rem;
+  box-shadow: 2px 2px 10px #5557;
+}
+
+.SaveDialog input{
+  width: 100%;
+  border: 0;
+  background: #eee;
+  padding: 0.5rem 1rem;
+}
+
+.SaveDialog button{
+  background: #222;
+  color: #fff;
+  border: 0;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.SaveDialog .CloseDialog{
+  position: absolute;
+  padding: 0;
+  top: 0;
+  right: 0;
+  height: 20px;
+}

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import uuidv4 from 'uuid/v4';
 import Taskbar from './components/Taskbar';
 import DesktopIcon from './components/DesktopIcon';
-import { Notepad } from './icons';
+import { Notepad, TextFile } from './icons';
 import NotepadWindow from './components/NotepadWindow';
 import ContextMenu from './components/ContextMenu';
 import windowStore from './stores/windowStore';
@@ -10,12 +10,40 @@ import windowStore from './stores/windowStore';
 function App() {
   const [desktopWindows, setDesktopWindows] = useState([]);
   const [contextMenu, setContextMenu] = useState({ open: false, clientX: 0, clientY: 0 });
+  const [files, setFiles] = useState([]);
+  const [filesToRender, setFilesToRender] = useState([]);
 
   useEffect(() => {
     windowStore.subscribe(() => {
       setDesktopWindows(windowStore.getState());
     });
   }, []);
+
+  useEffect(() => {
+    setFilesToRender(files.map(file => (
+      <DesktopIcon
+        key={uuidv4()}
+        icon={<TextFile size={30} />}
+        title={file.name + ".txt"}
+        onDoubleClick={() => onDesktopIconDoubleClick(file.content)}
+      />
+    )));
+    //eslint-disable-next-line
+  }, [files]);
+
+  const onDesktopIconDoubleClick = (content) => {
+    let id = uuidv4();
+    windowStore.dispatch({
+      type: 'open',
+      window: <NotepadWindow
+        key={id}
+        id={id}
+        files={files}
+        setFiles={setFiles}
+        content={content}
+      />
+    })
+  }
 
   return (
     <div
@@ -33,11 +61,11 @@ function App() {
       <DesktopIcon
         icon={<Notepad />}
         title="Notepad"
-        onDoubleClick={() => {
-          let id = uuidv4();
-          windowStore.dispatch({ type: 'open', window: <NotepadWindow key={id} id={id} /> });
-        }}
+        onDoubleClick={onDesktopIconDoubleClick}
       />
+      {
+        filesToRender.map(file => file)
+      }
       <Taskbar desktopWindows={desktopWindows} />
     </div>
   );
