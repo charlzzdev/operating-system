@@ -17,11 +17,6 @@ const NotepadWindow = ({ id, content, files, setFiles }) => {
     });
   }, [setShowSaveDialog]);
 
-  const saveTxt = (fileName) => {
-    setFiles([...files, { name: fileName, content: textarea.current.value }]);
-    setShowSaveDialog(false);
-  }
-
   return (
     <div className="NotepadWindow" id={id} onDragEnd={dropIcon}>
       <header className="WindowHeader">
@@ -35,7 +30,7 @@ const NotepadWindow = ({ id, content, files, setFiles }) => {
           <button className="TaskbarIcon" onClick={() => windowStore.dispatch({ type: 'close', key: id })}><Close /></button>
         </div>
       </header>
-      {showSaveDialog && <SaveDialog saveTxt={saveTxt} setShowSaveDialog={setShowSaveDialog} />}
+      {showSaveDialog && <SaveDialog text={textarea.current.value} setShowSaveDialog={setShowSaveDialog} />}
       <textarea ref={textarea} defaultValue={typeof content === 'string' ? content : ''}></textarea>
     </div>
   )

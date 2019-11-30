@@ -6,6 +6,7 @@ import { Notepad, TextFile } from './icons';
 import NotepadWindow from './components/NotepadWindow';
 import ContextMenu from './components/ContextMenu';
 import windowStore from './stores/windowStore';
+import fileStore from './stores/fileStore';
 
 function App() {
   const [desktopWindows, setDesktopWindows] = useState([]);
@@ -14,9 +15,8 @@ function App() {
   const [filesToRender, setFilesToRender] = useState([]);
 
   useEffect(() => {
-    windowStore.subscribe(() => {
-      setDesktopWindows(windowStore.getState());
-    });
+    windowStore.subscribe(() => setDesktopWindows(windowStore.getState()));
+    fileStore.subscribe(() => setFiles(fileStore.getState()));
   }, []);
 
   useEffect(() => {
