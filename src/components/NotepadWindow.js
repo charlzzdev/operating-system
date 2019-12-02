@@ -4,7 +4,7 @@ import { Close, Maximize, Minus } from '../icons';
 import windowStore from '../stores/windowStore';
 import SaveDialog from './SaveDialog';
 
-const NotepadWindow = ({ id, content, files, setFiles }) => {
+const NotepadWindow = ({ id, content, title }) => {
   const textarea = useRef(null);
   const [showSaveDialog, setShowSaveDialog] = useState(false);
 
@@ -20,7 +20,7 @@ const NotepadWindow = ({ id, content, files, setFiles }) => {
   return (
     <div className="NotepadWindow" id={id} onDragEnd={dropIcon}>
       <header className="WindowHeader">
-        <span>Notepad</span>
+        <span>{title}</span>
         <div className="WindowHeaderIcons">
           <button className="TaskbarIcon" onClick={() => document.querySelector(`.icon-${id}`).click()}><Minus /></button>
           <button

@@ -41,6 +41,7 @@ function App() {
         files={files}
         setFiles={setFiles}
         content={content}
+        title={content.length ? files.map(f => f.content === content && f.name + '.txt') : 'Notepad'}
       />
     })
   }
