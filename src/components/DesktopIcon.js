@@ -6,7 +6,7 @@ const DesktopIcon = ({ icon, title, onDoubleClick }) => {
     <button
       className="DesktopIcon"
       onDoubleClick={onDoubleClick}
-      onKeyDown={e => e.key === 'Enter' && onDoubleClick()}
+      onKeyDown={e => e.key === 'Enter' && onDoubleClick('')}
       onDragEnd={dropIcon}
     >
       <div className="icon">
