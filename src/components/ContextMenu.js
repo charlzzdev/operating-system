@@ -5,14 +5,14 @@ const ContextMenu = ({ state }) => {
   return (
     <ul className="ContextMenu" style={{ left: state.coords.x, top: state.coords.y }}>
       {
-        state.type === 'open_default' && <>
+        state.type === 'context_default' && <>
           <li onClick={() => window.location.reload()}>Reload</li>
           <li>Set wallpaper</li>
           <li>New <ChevronRight /></li>
         </>
       }
       {
-        state.type === 'open_file' && <>
+        state.type === 'context_file' && <>
           <li onClick={() => state.methods.setShowSaveDialog(true)}>Save</li>
           <li onClick={state.methods.minimize}>Minimize</li>
           <li onClick={state.methods.maximize}>Maximize</li>

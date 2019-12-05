@@ -23,7 +23,7 @@ const NotepadWindow = ({ id, content, title }) => {
   const close = () => windowStore.dispatch({ type: 'close', key: id });
   const openContextMenu = (x, y) => {
     setTimeout(() => contextMenuStore.dispatch({
-      type: 'open_file',
+      type: 'context_file',
       coords: { x, y },
       methods: {
         setShowSaveDialog,

@@ -52,7 +52,7 @@ function App() {
     <div
       className="App"
       onContextMenu={e => e.target.className === 'App' && contextMenuStore.dispatch({
-        type: 'open_default',
+        type: 'context_default',
         coords: { x: e.clientX, y: e.clientY }
       })}
       onClick={() => contextMenuStore.dispatch({ type: 'close' })}
