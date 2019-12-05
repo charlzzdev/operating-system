@@ -7,6 +7,7 @@ import NotepadWindow from './components/NotepadWindow';
 import ContextMenu from './components/ContextMenu';
 import windowStore from './stores/windowStore';
 import fileStore from './stores/fileStore';
+import contextMenuStore from './stores/contextMenuStore';
 
 function App() {
   const [desktopWindows, setDesktopWindows] = useState([]);
@@ -17,6 +18,7 @@ function App() {
   useEffect(() => {
     windowStore.subscribe(() => setDesktopWindows(windowStore.getState()));
     fileStore.subscribe(() => setFiles(fileStore.getState()));
+    contextMenuStore.subscribe(() => setContextMenu(contextMenuStore.getState()));
   }, []);
 
   useEffect(() => {
@@ -49,11 +51,14 @@ function App() {
   return (
     <div
       className="App"
-      onContextMenu={e => setContextMenu({ open: true, clientX: e.clientX, clientY: e.clientY })}
-      onClick={() => setContextMenu({ open: false })}
+      onContextMenu={e => e.target.className === 'App' && contextMenuStore.dispatch({
+        type: 'open_default',
+        coords: { x: e.clientX, y: e.clientY }
+      })}
+      onClick={() => contextMenuStore.dispatch({ type: 'close' })}
     >
       {
-        contextMenu.open && <ContextMenu left={contextMenu.clientX} top={contextMenu.clientY} />
+        contextMenu.open && <ContextMenu state={contextMenu} />
       }
 
       {
