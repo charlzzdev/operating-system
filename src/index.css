@@ -149,7 +149,7 @@ body{
   color: #fff;
 }
 
-.WindowHeaderIcons{
+.WindowHeaderIcons, .WindowHeaderTitle{
   display: inherit;
 }
 
@@ -159,6 +159,10 @@ body{
 
 .WindowHeader, .title, .icon{
   user-select: none;
+}
+
+.WindowHeaderTitle svg{
+  margin-right: 5px;
 }
 
 /* 

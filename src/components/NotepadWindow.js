@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import dropIcon from '../functions/dropIcon';
-import { Close, Maximize, Minus } from '../icons';
+import { Close, Maximize, Minus, MoreHorizontal } from '../icons';
 import windowStore from '../stores/windowStore';
 import SaveDialog from './SaveDialog';
 import contextMenuStore from '../stores/contextMenuStore';
@@ -21,25 +21,31 @@ const NotepadWindow = ({ id, content, title }) => {
   const minimize = () => document.querySelector(`.icon-${id}`).click();
   const maximize = () => document.getElementById(id).style = "top: 47.5%; width: 100%; height: 100%;";
   const close = () => windowStore.dispatch({ type: 'close', key: id });
+  const openContextMenu = (x, y) => {
+    setTimeout(() => contextMenuStore.dispatch({
+      type: 'open_file',
+      coords: { x, y },
+      methods: {
+        setShowSaveDialog,
+        minimize,
+        maximize,
+        close
+      }
+    }), 0);
+  }
 
   return (
     <div
       className="NotepadWindow"
       id={id}
       onDragEnd={dropIcon}
-      onContextMenu={e => contextMenuStore.dispatch({
-        type: 'open_file',
-        coords: { x: e.clientX, y: e.clientY },
-        methods: {
-          setShowSaveDialog,
-          minimize,
-          maximize,
-          close
-        }
-      })}
+      onContextMenu={e => openContextMenu(e.clientX, e.clientY)}
     >
       <header className="WindowHeader">
-        <span>{title}</span>
+        <button
+          className="WindowHeaderTitle TaskbarIcon"
+          onClick={e => openContextMenu(e.clientX, e.clientY)}
+        ><MoreHorizontal />{title}</button>
         <div className="WindowHeaderIcons">
           <button className="TaskbarIcon" onClick={minimize}><Minus /></button>
           <button className="TaskbarIcon" onClick={maximize}><Maximize /></button>
