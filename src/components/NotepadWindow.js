@@ -55,7 +55,7 @@ const NotepadWindow = ({ id, content, title }) => {
       {
         showSaveDialog && <SaveDialog
           title={title}
-          text={textarea.current.value}
+          textarea={textarea}
           setShowSaveDialog={setShowSaveDialog}
         />
       }

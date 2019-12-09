@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { Close } from '../icons';
 import fileStore from '../stores/fileStore';
 
-const SaveDialog = ({ title, text, setShowSaveDialog }) => {
+const SaveDialog = ({ title, textarea, setShowSaveDialog }) => {
   const fileName = useRef(null);
 
   useEffect(() => {
@@ -13,16 +13,17 @@ const SaveDialog = ({ title, text, setShowSaveDialog }) => {
         type: 'replace',
         file: {
           name: title.filter(e => e !== false)[0].split(".")[0],
-          content: text
+          content: textarea.current.value
         }
       });
       setShowSaveDialog(false);
+      textarea.current.focus();
     }
-  }, [setShowSaveDialog, title, text]);
+  }, [setShowSaveDialog, title, textarea]);
 
   const save = () => {
     const fileNameExists = fileStore.getState().some(file => file.name === fileName.current.value);
-    const file = { name: fileName.current.value, content: text };
+    const file = { name: fileName.current.value, content: textarea.current.value };
 
     if (!fileNameExists) {
       fileStore.dispatch({ type: 'save', file });
