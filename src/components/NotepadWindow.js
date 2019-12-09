@@ -52,7 +52,13 @@ const NotepadWindow = ({ id, content, title }) => {
           <button className="TaskbarIcon" onClick={close}><Close /></button>
         </div>
       </header>
-      {showSaveDialog && <SaveDialog text={textarea.current.value} setShowSaveDialog={setShowSaveDialog} />}
+      {
+        showSaveDialog && <SaveDialog
+          title={title}
+          text={textarea.current.value}
+          setShowSaveDialog={setShowSaveDialog}
+        />
+      }
       <textarea ref={textarea} defaultValue={typeof content === 'string' ? content : ''}></textarea>
     </div>
   )
