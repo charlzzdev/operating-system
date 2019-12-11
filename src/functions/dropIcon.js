@@ -1,14 +1,16 @@
 const dropIcon = e => {
-  let top, left;
-  const rightBoundary = window.innerWidth - e.target.clientWidth - 16;
-  const bottomBoundary = window.innerHeight - e.target.clientHeight - 64;
+  let top, left, rightBoundary, bottomBoundary;
 
   if (e.target.tagName === 'DIV') {
     top = e.clientY + (e.target.clientHeight / 2);
     left = e.clientX + (e.target.clientWidth / 10);
+    rightBoundary = window.innerWidth;
+    bottomBoundary = window.innerHeight;
   } else {
     top = e.clientY - (e.target.clientHeight / 2);
     left = e.clientX - (e.target.clientWidth / 2);
+    rightBoundary = window.innerWidth - e.target.clientWidth - 16;
+    bottomBoundary = window.innerHeight - e.target.clientHeight - 64;
   }
 
   e.target.style.position = 'absolute';
