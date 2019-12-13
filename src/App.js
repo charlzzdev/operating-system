@@ -8,6 +8,7 @@ import ContextMenu from './components/ContextMenu';
 import windowStore from './stores/windowStore';
 import fileStore from './stores/fileStore';
 import contextMenuStore from './stores/contextMenuStore';
+import onDesktopIconDoubleClick from './functions/onDesktopIconDoubleClick';
 
 function App() {
   const [desktopWindows, setDesktopWindows] = useState([]);
@@ -27,26 +28,16 @@ function App() {
         key={uuidv4()}
         icon={<TextFile size={30} />}
         title={file.name + ".txt"}
-        onDoubleClick={() => onDesktopIconDoubleClick(file.content)}
+        onDoubleClick={() => onDesktopIconDoubleClick({
+          DesktopWindow: NotepadWindow,
+          ext: 'txt',
+          content: file.content,
+          files
+        })}
       />
     )));
     //eslint-disable-next-line
   }, [files]);
-
-  const onDesktopIconDoubleClick = (content) => {
-    let id = uuidv4();
-    windowStore.dispatch({
-      type: 'open',
-      window: <NotepadWindow
-        key={id}
-        id={id}
-        files={files}
-        setFiles={setFiles}
-        content={content}
-        title={content.length ? files.map(f => f.content === content && f.name + '.txt') : 'Notepad'}
-      />
-    })
-  }
 
   return (
     <div
@@ -60,14 +51,18 @@ function App() {
       {
         contextMenu.open && <ContextMenu state={contextMenu} />
       }
-
       {
         desktopWindows.map(w => w)
       }
       <DesktopIcon
         icon={<Notepad />}
         title="Notepad"
-        onDoubleClick={onDesktopIconDoubleClick}
+        onDoubleClick={() => onDesktopIconDoubleClick({
+          DesktopWindow: NotepadWindow,
+          ext: 'txt',
+          content: '',
+          files
+        })}
       />
       {
         filesToRender.map(file => file)
