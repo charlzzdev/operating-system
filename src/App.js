@@ -32,6 +32,7 @@ function App() {
           DesktopWindow: NotepadWindow,
           ext: 'txt',
           content: file.content,
+          fileId: file.id,
           files
         })}
       />

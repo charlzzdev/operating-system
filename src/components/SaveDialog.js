@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import uuidv4 from 'uuid/v4';
 import { Close } from '../icons';
 import fileStore from '../stores/fileStore';
 
@@ -23,7 +24,11 @@ const SaveDialog = ({ title, textarea, setShowSaveDialog }) => {
 
   const save = () => {
     const fileNameExists = fileStore.getState().some(file => file.name === fileName.current.value);
-    const file = { name: fileName.current.value, content: textarea.current.value };
+    const file = {
+      name: fileName.current.value,
+      content: textarea.current.value,
+      id: uuidv4()
+    };
 
     if (!fileNameExists) {
       fileStore.dispatch({ type: 'save', file });

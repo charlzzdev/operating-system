@@ -2,13 +2,13 @@ import React from 'react';
 import uuidv4 from 'uuid/v4';
 import windowStore from '../stores/windowStore';
 
-const onDesktopIconDoubleClick = ({ DesktopWindow, ext, content, files }) => {
+const onDesktopIconDoubleClick = ({ DesktopWindow, ext, content, fileId, files }) => {
   const id = uuidv4();
 
   const title = (() => {
     switch (ext) {
       case 'txt':
-        return content.length ? files.map(f => f.content === content && f.name + '.txt') : 'Notepad';
+        return fileId ? files.map(f => f.id === fileId && f.name + '.txt') : 'Notepad';
       default:
         return 'File Title';
     }
