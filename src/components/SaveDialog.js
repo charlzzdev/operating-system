@@ -13,7 +13,7 @@ const SaveDialog = ({ title, textarea, setShowSaveDialog }) => {
       fileStore.dispatch({
         type: 'replace',
         file: {
-          name: title.filter(e => e !== false)[0].split(".")[0],
+          name: title.filter(e => e !== false)[0],
           content: textarea.current.value
         }
       });
@@ -23,9 +23,9 @@ const SaveDialog = ({ title, textarea, setShowSaveDialog }) => {
   }, [setShowSaveDialog, title, textarea]);
 
   const save = () => {
-    const fileNameExists = fileStore.getState().some(file => file.name === fileName.current.value);
+    const fileNameExists = fileStore.getState().some(file => file.name === `${fileName.current.value}.txt`);
     const file = {
-      name: fileName.current.value,
+      name: `${fileName.current.value}.txt`,
       content: textarea.current.value,
       id: uuidv4()
     };

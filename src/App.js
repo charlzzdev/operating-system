@@ -27,7 +27,8 @@ function App() {
       <DesktopIcon
         key={uuidv4()}
         icon={<TextFile size={30} />}
-        title={file.name + ".txt"}
+        title={file.name}
+        style={file.style}
         onDoubleClick={() => onDesktopIconDoubleClick({
           DesktopWindow: NotepadWindow,
           ext: 'txt',

@@ -9,6 +9,16 @@ function fileSaver(state = [], action) {
       }
       return file;
     });
+    case 'style': return state.map(file => {
+      if (file.name === action.fileName) {
+        file.style = {
+          position: 'absolute',
+          left: action.style.left,
+          top: action.style.top
+        };
+      }
+      return file;
+    });
     default: return state;
   }
 }

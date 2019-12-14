@@ -8,7 +8,7 @@ const onDesktopIconDoubleClick = ({ DesktopWindow, ext, content, fileId, files }
   const title = (() => {
     switch (ext) {
       case 'txt':
-        return fileId ? files.map(f => f.id === fileId && f.name + '.txt') : 'Notepad';
+        return fileId ? files.map(f => f.id === fileId && f.name) : 'Notepad';
       default:
         return 'File Title';
     }
