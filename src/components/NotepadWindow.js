@@ -33,12 +33,14 @@ const NotepadWindow = ({ id, content, title }) => {
       }
     }), 0);
   }
+  const increaseZIndex = () => windowStore.dispatch({ type: 'increaseZIndex', id });
 
   return (
     <div
       className="NotepadWindow"
       id={id}
-      onDragEnd={dropIcon}
+      onClick={increaseZIndex}
+      onDragEnd={e => { dropIcon(e); increaseZIndex(); }}
       onContextMenu={e => openContextMenu(e.clientX, e.clientY)}
     >
       <header className="WindowHeader">
