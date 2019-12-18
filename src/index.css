@@ -181,6 +181,7 @@ body{
 }
 
 .ContextMenu li{
+  position: relative;
   list-style-type: none;
   color: #fff;
   padding: 0.5rem 1rem;
@@ -195,6 +196,28 @@ body{
 .ContextMenu li svg{
   float:right;
 }
+
+/* 
+ *
+ *
+ *    SUBMENU
+ *
+ *
+ */
+
+.submenu{
+  display: none;
+}
+
+.ContextMenu li:hover .submenu{
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  background: #222;
+  width: 200px;
+}
+
 
 /* 
  *

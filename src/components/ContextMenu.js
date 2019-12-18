@@ -1,5 +1,8 @@
 import React from 'react';
 import { ChevronRight } from '../icons';
+import uuidv4 from 'uuid/v4';
+import windowStore from '../stores/windowStore';
+import NotepadWindow from './NotepadWindow';
 
 const ContextMenu = ({ state }) => {
   return (
@@ -8,7 +11,22 @@ const ContextMenu = ({ state }) => {
         state.type === 'context_default' && <>
           <li onClick={() => window.location.reload()}>Reload</li>
           <li>Set wallpaper</li>
-          <li>New <ChevronRight /></li>
+          <li>
+            New <ChevronRight />
+            <ul className="submenu">
+              <li onClick={() => {
+                const id = uuidv4();
+                windowStore.dispatch({
+                  type: 'open',
+                  window: <NotepadWindow
+                    key={id}
+                    id={id}
+                    title="Notepad"
+                  />
+                });
+              }}>Text file</li>
+            </ul>
+          </li>
         </>
       }
       {
