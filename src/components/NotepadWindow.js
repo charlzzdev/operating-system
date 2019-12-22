@@ -38,6 +38,7 @@ const NotepadWindow = ({ id, content, title }) => {
   return (
     <div
       className="NotepadWindow"
+      draggable="true"
       id={id}
       onClick={increaseZIndex}
       onDragEnd={e => { dropIcon(e); increaseZIndex(); }}
@@ -61,7 +62,11 @@ const NotepadWindow = ({ id, content, title }) => {
           setShowSaveDialog={setShowSaveDialog}
         />
       }
-      <textarea ref={textarea} defaultValue={typeof content === 'string' ? content : ''}></textarea>
+      <textarea
+        className="not-draggable"
+        ref={textarea}
+        defaultValue={typeof content === 'string' ? content : ''}
+      ></textarea>
     </div>
   )
 }

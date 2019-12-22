@@ -1,6 +1,24 @@
 import fileStore from '../stores/fileStore';
 
+let parentElement;
+
+document.addEventListener('mousedown', e => {
+  if (e.target.classList.contains('not-draggable')) {
+    parentElement = e.target.parentElement;
+    parentElement.draggable = false;
+  }
+});
+
+document.addEventListener('mouseup', () => {
+  if (parentElement) { parentElement.draggable = true }
+});
+
 const dropIcon = e => {
+  if (e.target.classList.contains('not-draggable')) {
+    parentElement.draggable = true;
+    return;
+  }
+
   let top, left, rightBoundary, bottomBoundary;
 
   if (e.target.tagName === 'DIV') {
