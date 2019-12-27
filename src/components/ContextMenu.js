@@ -37,6 +37,13 @@ const ContextMenu = ({ state }) => {
           <li onClick={state.methods.close}>Close</li>
         </>
       }
+      {
+        state.type === 'context_icon' && <>
+          <li onClick={state.methods.open}>Open</li>
+          <li>Rename</li>
+          <li>Delete</li>
+        </>
+      }
     </ul>
   )
 }
