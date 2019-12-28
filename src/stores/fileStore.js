@@ -19,6 +19,13 @@ function fileSaver(state = [], action) {
       }
       return file;
     });
+    case 'rename': return state.map(file => {
+      const fileNameExists = state.some(f => f.name === action.fileName);
+      if (!fileNameExists && file.id === action.fileId) {
+        file.name = action.fileName;
+      }
+      return file;
+    });
     default: return state;
   }
 }

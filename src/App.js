@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import uuidv4 from 'uuid/v4';
+
 import Taskbar from './components/Taskbar';
 import DesktopIcon from './components/DesktopIcon';
 import { Notepad, TextFile } from './icons';
 import NotepadWindow from './components/NotepadWindow';
 import ContextMenu from './components/ContextMenu';
+import RenameDialog from './components/RenameDialog';
+
 import windowStore from './stores/windowStore';
 import fileStore from './stores/fileStore';
 import contextMenuStore from './stores/contextMenuStore';
+
 import onDesktopIconDoubleClick from './functions/onDesktopIconDoubleClick';
 
 function App() {
@@ -15,6 +19,7 @@ function App() {
   const [contextMenu, setContextMenu] = useState({ open: false, clientX: 0, clientY: 0 });
   const [files, setFiles] = useState([]);
   const [filesToRender, setFilesToRender] = useState([]);
+  const [renameDialog, setRenameDialog] = useState({ open: false, fileId: null });
 
   useEffect(() => {
     windowStore.subscribe(() => setDesktopWindows(windowStore.getState()));
@@ -28,6 +33,7 @@ function App() {
         key={uuidv4()}
         icon={<TextFile size={30} />}
         title={file.name}
+        openRenameDialog={() => setRenameDialog({ open: true, fileId: file.id })}
         style={file.style}
         onDoubleClick={() => onDesktopIconDoubleClick({
           DesktopWindow: NotepadWindow,
@@ -68,6 +74,12 @@ function App() {
       />
       {
         filesToRender.map(file => file)
+      }
+      {
+        renameDialog.open && <RenameDialog
+          fileId={renameDialog.fileId}
+          setRenameDialog={setRenameDialog}
+        />
       }
       <Taskbar desktopWindows={desktopWindows} />
     </div>

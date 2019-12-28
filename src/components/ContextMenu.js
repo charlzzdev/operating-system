@@ -5,6 +5,8 @@ import windowStore from '../stores/windowStore';
 import NotepadWindow from './NotepadWindow';
 
 const ContextMenu = ({ state }) => {
+  const disabledOption = !/\./.test(state.title);
+
   return (
     <ul className="ContextMenu" style={{ left: state.coords.x, top: state.coords.y }}>
       {
@@ -40,7 +42,9 @@ const ContextMenu = ({ state }) => {
       {
         state.type === 'context_icon' && <>
           <li onClick={state.methods.open}>Open</li>
-          <li>Rename</li>
+          <li onClick={state.methods.rename} disabled={disabledOption}>
+            Rename <span>{disabledOption && 'disabled'}</span>
+          </li>
           <li>Delete</li>
         </>
       }

@@ -196,6 +196,16 @@ body{
   float:right;
 }
 
+.ContextMenu li[disabled]{
+  background: #555;
+}
+
+.ContextMenu li[disabled] span {
+  float: right;
+  color: #bbb;
+  font-size: 0.75rem;
+}
+
 /* 
  *
  *

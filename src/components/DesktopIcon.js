@@ -2,7 +2,7 @@ import React from 'react';
 import dropIcon from '../functions/dropIcon';
 import contextMenuStore from '../stores/contextMenuStore';
 
-const DesktopIcon = ({ icon, title, onDoubleClick, style }) => {
+const DesktopIcon = ({ icon, title, openRenameDialog, onDoubleClick, style }) => {
   return (
     <button
       className="DesktopIcon"
@@ -11,9 +11,11 @@ const DesktopIcon = ({ icon, title, onDoubleClick, style }) => {
       onDragEnd={dropIcon}
       onContextMenu={e => contextMenuStore.dispatch({
         type: 'context_icon',
+        title,
         coords: { x: e.clientX, y: e.clientY },
         methods: {
-          open: onDoubleClick
+          open: onDoubleClick,
+          rename: openRenameDialog
         }
       })}
       data-filename={title}
