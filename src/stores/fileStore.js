@@ -26,6 +26,7 @@ function fileSaver(state = [], action) {
       }
       return file;
     });
+    case 'delete': return state.filter(file => file.id !== action.fileId);
     default: return state;
   }
 }

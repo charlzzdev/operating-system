@@ -45,7 +45,9 @@ const ContextMenu = ({ state }) => {
           <li onClick={state.methods.rename} disabled={disabledOption}>
             Rename <span>{disabledOption && 'disabled'}</span>
           </li>
-          <li>Delete</li>
+          <li onClick={state.methods.delete} disabled={disabledOption}>
+            Delete <span>{disabledOption && 'disabled'}</span>
+          </li>
         </>
       }
     </ul>

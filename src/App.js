@@ -34,6 +34,7 @@ function App() {
         icon={<TextFile size={30} />}
         title={file.name}
         openRenameDialog={() => setRenameDialog({ open: true, fileId: file.id })}
+        deleteFile={() => fileStore.dispatch({ type: 'delete', fileId: file.id })}
         style={file.style}
         onDoubleClick={() => onDesktopIconDoubleClick({
           DesktopWindow: NotepadWindow,

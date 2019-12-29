@@ -2,7 +2,7 @@ import React from 'react';
 import dropIcon from '../functions/dropIcon';
 import contextMenuStore from '../stores/contextMenuStore';
 
-const DesktopIcon = ({ icon, title, openRenameDialog, onDoubleClick, style }) => {
+const DesktopIcon = ({ icon, title, openRenameDialog, deleteFile, onDoubleClick, style }) => {
   return (
     <button
       className="DesktopIcon"
@@ -15,7 +15,8 @@ const DesktopIcon = ({ icon, title, openRenameDialog, onDoubleClick, style }) =>
         coords: { x: e.clientX, y: e.clientY },
         methods: {
           open: onDoubleClick,
-          rename: openRenameDialog
+          rename: openRenameDialog,
+          delete: deleteFile
         }
       })}
       data-filename={title}
