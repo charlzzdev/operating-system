@@ -17,7 +17,7 @@ import onDesktopIconDoubleClick from './functions/onDesktopIconDoubleClick';
 function App() {
   const [desktopWindows, setDesktopWindows] = useState([]);
   const [contextMenu, setContextMenu] = useState({ open: false, clientX: 0, clientY: 0 });
-  const [files, setFiles] = useState([]);
+  const [files, setFiles] = useState(JSON.parse(window.localStorage.getItem('files')));
   const [filesToRender, setFilesToRender] = useState([]);
   const [renameDialog, setRenameDialog] = useState({ open: false, fileId: null });
 

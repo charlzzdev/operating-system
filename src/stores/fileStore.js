@@ -1,6 +1,10 @@
 import { createStore } from 'redux';
 
-function fileSaver(state = [], action) {
+function fileSaver(state = JSON.parse(window.localStorage.getItem('files')) || [], action) {
+  setTimeout(() => {
+    window.localStorage.setItem('files', JSON.stringify(state));
+  }, 0);
+
   switch (action.type) {
     case 'save': return [...state, action.file];
     case 'replace': return state.map(file => {
