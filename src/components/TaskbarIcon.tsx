@@ -1,9 +1,9 @@
-import * as React from 'react';
+import React from 'react';
 
 interface TaskbarIconProps {
-  id: string,
+  id?: string,
   width: string,
-  onClick: () => void,
+  onClick?: () => void,
   children: object
 }
 
